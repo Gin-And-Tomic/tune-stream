@@ -16,18 +16,3 @@ module.exports.get = function () {
         })
     })
 }
-
-module.exports.find = function (id) {
-    return new Promise(function (resolve, reject) {
-        fs.readFile(`${path}/${id}`,'mp3', (err, file) => {
-            if (err) {
-                reject({
-                    code: 500,
-                    msg: err
-                })
-            } else {
-                resolve(file)
-            }
-        })
-    })
-}
