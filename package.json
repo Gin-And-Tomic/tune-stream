@@ -1,0 +1,17 @@
+{
+  "name": "tune-stream",
+  "version": "0.0.0",
+  "description": "Music streaming service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodejs src/server/index.js"
+  },
+  "author": "",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "grunt": "~1.0.1",
+    "grunt-nodemon": "~0.4.2"
+  }
+}
