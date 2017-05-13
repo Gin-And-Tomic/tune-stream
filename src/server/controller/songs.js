@@ -1,4 +1,5 @@
 const express = require('express')
+    , youtubeStream = require('youtube-audio-stream')
     , router = express.Router()
     , songs = require('../domain/songs')
     , fs = require('fs')
@@ -18,9 +19,9 @@ router.route("/")
             })
     })
 
-router.route("/:id")
+router.route("/library/:id")
     .get((req, res) => {
-        var id = req.params.id;
+        const id = req.params.id;
         console.log("Recieved GET for songs:", id);
 
         const fullPath = `${config.libaryPath}/${id}`
@@ -32,5 +33,16 @@ router.route("/:id")
         });
 
         fs.createReadStream(fullPath).pipe(res);
+    })
+
+router.route('/tube/:id')
+    .get((req, res) => {
+        const id = req.params.id;
+        var requestUrl = `http://youtube.com/watch?v=${id}`
+        try {
+            youtubeStream(requestUrl).pipe(res)
+        } catch (exception) {
+            res.status(500).send(exception)
+        }
     })
 module.exports = router
