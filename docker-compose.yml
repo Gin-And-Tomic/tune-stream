@@ -1,0 +1,18 @@
+web:
+  build: .
+  links:
+   - db
+  ports:
+   - "80:8000"
+  volumes:
+   - .:/usr/src/app/
+  env_file:
+  - ./docker-compose.env
+  environment:
+   NODE_ENV: production
+   MONGO_URL: mongodb://${DB_USER}:${DB_PASSWORD}@ds137801.mlab.com:37801/tunestream
+db:
+  image: mongo:latest
+  ports:
+   - "27017:27017"
+
