@@ -11,3 +11,5 @@ coverage/
 server/config.local
 music/*
 docker-compose.env
+.vscode
+config.local.js
