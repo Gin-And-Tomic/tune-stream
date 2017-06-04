@@ -1,16 +1,18 @@
 // Initial State
-const initialState = { songs: [] };
+const initialState = { songs: [], song: undefined };
 
 const SongReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_SONG' :
       return {
-        songs: [action.song, ...state.songs],
+        ...state,
+        song: action.song,
       };
 
     case 'ADD_SONGS' :
       return {
-        songs: action.songs || [],
+        ...state,
+        songs: [action.song, ...state.songs],
       };
 
     default:
@@ -24,7 +26,6 @@ const SongReducer = (state = initialState, action) => {
 export const getSongs = state => state.songs;
 
 // Get song by id
-export const getSong = (state, id) => state.songs.filter(song => song.id === id)[0];
-
+export const getSong = state => state.song;
 // Export Reducer
 export default SongReducer;
