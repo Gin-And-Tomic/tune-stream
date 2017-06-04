@@ -1,6 +1,6 @@
 import Express from 'express';
 import compression from 'compression';
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
 
@@ -34,6 +34,7 @@ import { fetchComponentData } from './util/fetchData';
 import songs from './routes/main.routes';
 import serverConfig from './config';
 
+/*
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
 
@@ -44,6 +45,7 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
     throw error;
   }
 });
+*/
 
 // Apply body Parser and server public assets and routes
 app.use(compression());
