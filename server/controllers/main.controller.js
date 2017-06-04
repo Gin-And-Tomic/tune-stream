@@ -1,8 +1,9 @@
 import config from '../config';
 import youtubeStream from 'youtube-audio-stream';
+import mm from 'musicmetadata';
+import fs from 'fs';
 
 const path = './music';
-const fs = require('fs');
 
 export function getSongs(req, res) {
   fs.readdir(path, (exception, files) => {
@@ -10,6 +11,19 @@ export function getSongs(req, res) {
       res.sendStatus(500).send(exception);
     } else {
       res.json(files);
+    }
+  });
+}
+
+export function getSong(req, res) {
+  const id = req.params.id;
+  const fullPath = config.libraryPath + '/' + id; // eslint-disable-line prefer-template
+
+  mm(fs.createReadStream(fullPath), (err, metadata) => {
+    if (err) {
+      res.sendStatus(500).send(err);
+    } else {
+      res.json(metadata);
     }
   });
 }

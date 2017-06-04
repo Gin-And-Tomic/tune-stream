@@ -4,6 +4,8 @@ const router = new Router();
 
 router.route('/songs').get(MainController.getSongs);
 
+router.route('/songs/:id').get(MainController.getSong);
+
 router.route('/library/:id').get(MainController.getSongFromLibrary);
 
 router.route('/tube/:id').get(MainController.getSongFromYoutube);
