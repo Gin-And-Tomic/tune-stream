@@ -10,7 +10,7 @@ export function addSong(song) {
 
 export function addSongRequest(song) {
   return (dispatch) => {
-    return callApi('songs', 'song', {
+    return callApi('songs', 'post', {
       song,
     }).then(res => dispatch(addSong(res.song)));
   };
@@ -33,7 +33,8 @@ export function fetchSongs() {
 
 export function fetchSong(id) {
   return (dispatch) => {
-    return callApi(`songs/${id}`).then(res => dispatch(addSong(res.song)));
+    return callApi(`songs/${id}`)
+      .then(res => dispatch(addSong(res)));
   };
 }
 
